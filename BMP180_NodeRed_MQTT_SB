@@ -1,0 +1,132 @@
+#include <ESP8266WiFi.h>
+#include <PubSubClient.h>
+#include <Wire.h>
+#include <Adafruit_BMP085.h>
+#include <WiFiManager.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+#define OLED_RESET -1
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+Adafruit_BMP085 bmp;
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+char mqtt_server[40] = "";
+char mqtt_port[6] = "1883";
+
+unsigned long previousMillis = 0;
+
+void setup_wifi() {
+  WiFiManager wifiManager;
+
+  WiFiManagerParameter custom_mqtt_server("server", "MQTT Server", mqtt_server, 40);
+  wifiManager.addParameter(&custom_mqtt_server);
+
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(0, 0);
+  display.println("Booting...");
+  display.println("1. Open BMP180Config");
+  display.println("   on WiFi portal");
+  display.println("2. Edit WiFi & MQTT");
+  display.println("   credentials");
+  display.println("3. Save, click reset");
+  display.display();
+
+  wifiManager.setConfigPortalTimeout(1800);
+  wifiManager.startConfigPortal("BMP180ConfigAP");
+
+  strcpy(mqtt_server, custom_mqtt_server.getValue());
+
+  Serial.println("WiFi connected");
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP());
+  Serial.print("MQTT Server: ");
+  Serial.println(mqtt_server);
+}
+
+void reconnect() {
+  while (!client.connected()) {
+    Serial.print("Attempting MQTT connection...");
+    if (client.connect("NodeMCUClient")) {
+      Serial.println("connected");
+    } else {
+      Serial.print("failed, rc=");
+      Serial.print(client.state());
+      Serial.println(" try again in 5 seconds");
+      delay(5000);
+    }
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    Serial.println(F("SSD1306 allocation failed"));
+    for (;;);
+  }
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+
+  setup_wifi();
+  client.setServer(mqtt_server, atoi(mqtt_port));
+
+  if (!bmp.begin()) {
+    Serial.println("Could not find a valid BMP180 sensor, check wiring!");
+    while (1);
+  }
+
+  display.clearDisplay();
+  display.setCursor(0, 0);
+  display.println("Booting...");
+  display.display();
+}
+
+void loop() {
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
+
+  unsigned long currentMillis = millis();
+  if (currentMillis - previousMillis > 10000) {
+    previousMillis = currentMillis;
+
+    float temperature = bmp.readTemperature();
+    float pressure = bmp.readPressure() / 100.0;
+
+    if (isnan(temperature) || isnan(pressure)) {
+      Serial.println("Failed to read from BMP180 sensor!");
+      return;
+    }
+
+    client.publish("carenuity/iot/temperature", String(temperature).c_str());
+    client.publish("carenuity/iot/pressure", String(pressure).c_str());
+
+    Serial.print("Temperature: ");
+    Serial.print(temperature);
+    Serial.println(" °C");
+
+    Serial.print("Pressure: ");
+    Serial.print(pressure);
+    Serial.println(" hPa");
+
+    display.clearDisplay();
+    display.setCursor(0, 0);
+    display.print("Temp: ");
+    display.print(temperature);
+    display.println(" C");
+
+    display.print("Pres: ");
+    display.print(pressure);
+    display.println(" hPa");
+    display.display();
+  }
+}
