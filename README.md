@@ -18,9 +18,11 @@ This project enables you to collect temperature and pressure data from a BMP180 
 **Setup Instructions**
 
 **Step 1: Install Node-RED**
+
 Follow the official guide to install Node-RED on your machine: https://nodered.org/docs/getting-started/
 
 **Step 2: Install Required Node-RED Nodes**
+
 In the Node-RED editor:
 1.	Click on the top-right menu → Manage palette
 2.	Under the Install tab, search for and install:
@@ -28,6 +30,7 @@ In the Node-RED editor:
 >	node-red-dashboard
 
 **Step 3: Import Node-RED Flow**
+
 Import the following .json file containing the pre-built Node-RED flow. 
 
 
@@ -63,6 +66,7 @@ When the ESP8266 boots up for the first time, it will:
 11.	Click Save
     
 **Step 7: Device Behavior after Reset**
+
 -	If configured correctly:
 1.	The OLED will show *Booting...*
 2.	Then *MQTT Connected*
