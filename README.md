@@ -31,8 +31,9 @@ In the Node-RED editor:
 
 **Step 3: Import Node-RED Flow**
 
-Import the following .json file containing the pre-built Node-RED flow. 
-
+Import the flows.json file containing the pre-built Node-RED flow from the following link: 
+*https://github.com/Chumba4209/Node-red/blob/main/flows.json*
+Open the link and copy the json file.
 
 **To import it:**
 1.	In the Node-RED editor, click the menu → Import
