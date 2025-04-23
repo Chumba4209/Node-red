@@ -3,17 +3,17 @@
 This project enables you to collect temperature and pressure data from a BMP180 sensor using an ESP8266 (D1 Mini) microcontroller, transmit it via MQTT, and visualize it on a Node-RED dashboard. Configuration is made simple via a Wi-Fi Manager portal, eliminating the need to access the code directly.
 
 **Hardware Requirements**
-•	ESP8266 D1 Mini or equivalent microcontroller
-•	BMP180 pressure and temperature sensor
-•	0.96" OLED Display (I2C)
-•	Micro USB cable for flashing and power
+- ESP8266 D1 Mini or equivalent microcontroller
+- BMP180 pressure and temperature sensor
+- 0.96" OLED Display (I2C)
+- Micro USB cable for flashing and power
 
 **Software Requirements**
-•	Node-RED (installed on local machine or server)
-•	Required Node-RED nodes:
+- Node-RED (installed on local machine or server)
+-	Required Node-RED nodes:
 >	@flowfuse/node-red-dashboard
 >	node-red-dashboard
-•	MQTT broker (can be local or public like HiveMQ)
+-	MQTT broker (can be local or public like HiveMQ)
 
 **Setup Instructions**
 
@@ -39,11 +39,11 @@ Import the following .json file containing the pre-built Node-RED flow.
 **Step 4: Set Up MQTT in Node-RED**
 In the imported flow, double-click the MQTT node to configure the broker.
 If using a public broker:
-•	Broker: broker.hivemq.com
-•	Port: 1883
+-	Broker: broker.hivemq.com
+-	Port: 1883
 If using a local broker (e.g., Mosquitto on your VM):
-•	Enter the IP address of the machine hosting your broker
-•	Ensure both your ESP8266 and the machine running the broker are on the same network
+-	Enter the IP address of the machine hosting your broker
+-	Ensure both your ESP8266 and the machine running the broker are on the same network
 
 **Step 5: Flash Binary Firmware**
 Flash your microcontroller on the Solution Builder with the binary/code.
@@ -63,15 +63,15 @@ When the ESP8266 boots up for the first time, it will:
 11.	Click Save
     
 **Step 7: Device Behavior after Reset**
-•	If configured correctly:
+-	If configured correctly:
 1.	The OLED will show *Booting...*
 2.	Then *MQTT Connected*
-•	Then live sensor readings:
+-	Then live sensor readings:
 
 ![image](https://github.com/user-attachments/assets/990dad40-5c29-48cf-89e8-2f7e780a53fa)
 
-•	If MQTT fails to connect:
-o	OLED will show MQTT Failed. Retrying...
+-	If MQTT fails to connect:
+  >	OLED will show MQTT Failed. Retrying...
 
 **Step 8: View Data on Node-RED Dashboard**
 To access your dashboard:
