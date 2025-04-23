@@ -92,6 +92,11 @@ NOTE: Incase the display is not working or you do not have a display, check your
 -	If MQTT fails to connect:
   >	OLED will show MQTT Failed. Retrying...
 
+NOTE: If you do not have a display or if your display is not working, open your node red and check the debug page to see if data is being sent by your microcontroller
+
+![image](https://github.com/user-attachments/assets/384959f8-fb94-445a-b337-7965fc5df101)
+
+
 **Step 8: View Data on Node-RED Dashboard**
 To access your dashboard:
 1.	Open your browser
