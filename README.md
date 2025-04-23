@@ -1,4 +1,4 @@
-**BMP180 Sensor to Node-RED Dashboard via MQTT**
+# **BMP180 Sensor to Node-RED Dashboard via MQTT**
 
 This project enables you to collect temperature and pressure data from a BMP180 sensor using an ESP8266 (D1 Mini) microcontroller, transmit it via MQTT, and visualize it on a Node-RED dashboard. Configuration is made simple via a Wi-Fi Manager portal, eliminating the need to access the code directly.
 
@@ -11,8 +11,8 @@ This project enables you to collect temperature and pressure data from a BMP180 
 **Software Requirements**
 •	Node-RED (installed on local machine or server)
 •	Required Node-RED nodes:
-o	@flowfuse/node-red-dashboard
-o	node-red-dashboard
+>	@flowfuse/node-red-dashboard
+>	node-red-dashboard
 •	MQTT broker (can be local or public like HiveMQ)
 
 **Setup Instructions**
@@ -24,8 +24,8 @@ Follow the official guide to install Node-RED on your machine: https://nodered.o
 In the Node-RED editor:
 1.	Click on the top-right menu → Manage palette
 2.	Under the Install tab, search for and install:
-o	@flowfuse/node-red-dashboard
-o	node-red-dashboard
+>	@flowfuse/node-red-dashboard
+>	node-red-dashboard
 
 **Step 3: Import Node-RED Flow**
 Import the following .json file containing the pre-built Node-RED flow. 
@@ -51,25 +51,25 @@ Flash your microcontroller on the Solution Builder with the binary/code.
 **Step 6: Wi-Fi and MQTT Configuration via Config Portal**
 When the ESP8266 boots up for the first time, it will:
 1.	Display on the OLED:
-2.	Booting...
-3.	1. Open BMP180Config on WiFi
-4.	2. Edit WiFi and MQTT credentials
-5.	3. Save, then click reset
-6.	Create an Access Point named BMP180ConfigAP
-7.	Connect to this Wi-Fi from your phone/laptop
-8.	A captive portal will open automatically (or go to 192.168.4.1)
-9.	Enter your:
-o	Wi-Fi SSID and Password
-o	MQTT Server (e.g., broker.hivemq.com or your local IP)
-10.	Click Save
+
+![image](https://github.com/user-attachments/assets/59f382f3-7a57-42ea-b4de-82e1c4392545)
+
+7.	Create an Access Point named BMP180ConfigAP
+8.	Connect to this Wi-Fi from your phone/laptop
+9.	A captive portal will open automatically (or go to 192.168.4.1)
+10.	Enter your:
+>	Wi-Fi SSID and Password
+>	MQTT Server (e.g., broker.hivemq.com or your local IP)
+11.	Click Save
     
 **Step 7: Device Behavior after Reset**
 •	If configured correctly:
-o	The OLED will show Booting...
-o	Then MQTT Connected
-o	Then live sensor readings:
-o	Temp: 25.3 ºC
-o	Pressure: 1013.2 hPa
+1.	The OLED will show *Booting...*
+2.	Then *MQTT Connected*
+•	Then live sensor readings:
+
+![image](https://github.com/user-attachments/assets/990dad40-5c29-48cf-89e8-2f7e780a53fa)
+
 •	If MQTT fails to connect:
 o	OLED will show MQTT Failed. Retrying...
 
