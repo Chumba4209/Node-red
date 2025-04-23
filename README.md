@@ -39,7 +39,12 @@ Open the link and copy the json file.
 1.	In the Node-RED editor, click the menu → Import
 2.	Paste the contents of the file or upload the file
 3.	Click Import and Deploy
-   
+
+After importing the flow.json file, your workspace should look like this:
+
+![image](https://github.com/user-attachments/assets/86c13882-e92d-478f-ba07-cbdf56df853f)
+
+
 **Step 4: Set Up MQTT in Node-RED**
 In the imported flow, double-click the MQTT node to configure the broker.
 If using a public broker:
