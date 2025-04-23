@@ -58,13 +58,27 @@ When the ESP8266 boots up for the first time, it will:
 
 ![image](https://github.com/user-attachments/assets/59f382f3-7a57-42ea-b4de-82e1c4392545)
 
-7.	Create an Access Point named BMP180ConfigAP
+NOTE: Incase the display is not working or you do not have a display, check your WiFi port and see if the BMP180ConfigAP is visible and click it.
+
+![image](https://github.com/user-attachments/assets/c08e7291-1119-4002-a537-a5981bf3b3d3)
+
+
+7.	An Access Point named BMP180ConfigAP is created
 8.	Connect to this Wi-Fi from your phone/laptop
-9.	A captive portal will open automatically (or go to 192.168.4.1)
-10.	Enter your:
+
+![image](https://github.com/user-attachments/assets/df61bae1-eac3-42a4-bd35-697c9698a150)
+
+   
+10.	A captive portal will open automatically (or go to 192.168.4.1)
+    
+11.	Enter your:
 >	Wi-Fi SSID and Password
 >	MQTT Server (e.g., broker.hivemq.com or your local IP)
-11.	Click Save
+
+![image](https://github.com/user-attachments/assets/0c394739-977e-418c-a64d-e7cab8df8f82)
+
+
+12.	Click Save
     
 **Step 7: Device Behavior after Reset**
 
